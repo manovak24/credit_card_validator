@@ -6,7 +6,11 @@ import './App.css';
 class App extends React.Component {
   render() {
     return (
-      <h1>Hello World</h1>
+      <div>
+        <h1>Hello World</h1>
+        <input type="text"></input>
+      </div>
+      
     )
   }
 }
