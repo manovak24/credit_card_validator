@@ -19,7 +19,6 @@ class CardInfo extends React.Component {
     handleSearch() {
         let card = this.state.cardNumber;
         card = card.split('').join(', ');
-        
         const cardToArr = card.split(',').map(function(item) {
             return parseInt(item, 10);
         })
@@ -33,9 +32,9 @@ class CardInfo extends React.Component {
         }
         let arraySum = cardToArr.reduce((acc, cur) => acc + cur);
         if (arraySum % 10 === 0) {
-            this.setState({results: 'Working'})
+            this.setState({results: 'valid'})
         } else {
-            this.setState({results: 'Not Working'})
+            this.setState({results: 'not valid'})
         }
     }  
 
@@ -47,7 +46,7 @@ class CardInfo extends React.Component {
                 placeholder="Please enter card number" />
                 <button onClick={this.handleSearch} className="validate-button">Validate</button>
 
-                <p>{this.state.results}</p>
+                <p>This card is {this.state.results}</p>
             </div>
         )
     }
