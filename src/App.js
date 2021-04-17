@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.css';
-import CardValidator from './Components/card-validator';
+import CardInfo from './Components/card-info';
 
 
 //Dont forget to use the Google fonts poppins and work sans
@@ -22,7 +22,7 @@ class App extends React.Component {
     return (
       <div>
         <h1>Hello World</h1>
-        <CardValidator onNumberChange={this.updateCardNumber} />
+        <CardInfo onNumberChange={this.updateCardNumber} />
       </div>
       
     )
