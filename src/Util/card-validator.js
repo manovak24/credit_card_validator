@@ -1,9 +1,13 @@
 const ValidateCred = {
-    validate(arr) {
-        if (arr === 0) {
-            return `Working`
+    validate(cardNumber) {
+        if (cardNumber === 0) {
+            return (() => ({
+                results: 'Working'
+            }))
         } else {
-            return `Working`
+            return (() => ({
+                results: 'Not working'
+            }))
         }
     }
 }
