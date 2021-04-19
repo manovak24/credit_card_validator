@@ -11,6 +11,7 @@ class CardInfo extends React.Component {
             expiry: '',
             results: '',
             nameError: '',
+            cvcError: '',
             focus: ''
         }
            
@@ -134,7 +135,7 @@ class CardInfo extends React.Component {
                     />
                     <div className='invalid-feedback error-msg'>{this.state.cvcError}</div>
                 </div>
-                
+
                 <input
                 required
                 onChange={this.handleExpiryChange}
