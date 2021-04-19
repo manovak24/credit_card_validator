@@ -11,8 +11,9 @@ class CardInfo extends React.Component {
             expiry: '',
             results: '',
             nameError: '',
+            focus: ''
         }
-
+           
         this.handleNumberChange = this.handleNumberChange.bind(this);
         this.validateCardNumber = this.validateCardNumber.bind(this);
         this.handleNameChange = this.handleNameChange.bind(this);
@@ -21,11 +22,9 @@ class CardInfo extends React.Component {
         this.handleInputFocus = this.handleInputFocus.bind(this);
     }
     
-    handleInputFocus = ({ target }) => {
-        this.setState({
-          focus: target.name,
-        });
-    };
+    handleInputFocus = (event) => {
+        this.setState({ focus: event.target.name });
+      }
 
     handleNumberChange(event) {
         this.setState({ cardNumber: event.target.value })
@@ -81,10 +80,28 @@ class CardInfo extends React.Component {
       }
       }
 
+      validateCVC= () => {
+        const { cvc } = this.state;
+        var num = /^[0-9]+$/;
+        if(cvc.match(num)){
+            this.setState({
+                cvcError:
+                    cvc.length < 3 || cvc.length > 4 ? 'CVC should be of 3-4 digits' : null
+        });
+
+        }
+        else{
+        this.setState({
+            cvcError: 'Only numeric values are allowed'
+       });
+      }
+    }
+
     render() {
         return(
             <div className="card-validator">
                 <input
+                required
                 onChange={this.handleNumberChange}
                 placeholder="Please enter card number" />
 
@@ -103,11 +120,23 @@ class CardInfo extends React.Component {
                     <div className='invalid-feedback error-msg'>{this.state.nameError}</div>
                 </div>
 
-                <input 
-                onChange={this.handleCvcChange}
-                placeholder="cvc Code" />
-
-                <input 
+                <div>
+                    <input
+                        type="tel"
+                        name="cvc"
+                        className= {`form-control ${this.state.cvcError ? 'is-invalid' : ''}`}
+                        required
+                        value={this.state.cvc}
+                        onChange={this.handleCvcChange}
+                        onFocus={this.handleInputFocus}
+                        onBlur={this.validateCVC}
+                        placeholder="cvc Code" 
+                    />
+                    <div className='invalid-feedback error-msg'>{this.state.cvcError}</div>
+                </div>
+                
+                <input
+                required
                 onChange={this.handleExpiryChange}
                 placeholder="Expiration mmyy" />
 
@@ -118,7 +147,8 @@ class CardInfo extends React.Component {
                 <PaymentForm cardNumber={this.state.cardNumber}
                 name={this.state.name}
                 cvc={this.state.cvc}
-                expiry={this.state.expiry} />
+                expiry={this.state.expiry}
+                focus={this.state.focus} />
             </div>
 
             
