@@ -9,16 +9,24 @@ class CardInfo extends React.Component {
             name: '',
             cvc: '',
             expiry: '',
-            results: ''
+            results: '',
+            nameError: '',
         }
 
         this.handleNumberChange = this.handleNumberChange.bind(this);
-        this.handleSearch = this.handleSearch.bind(this);
+        this.validateCardNumber = this.validateCardNumber.bind(this);
         this.handleNameChange = this.handleNameChange.bind(this);
         this.handleCvcChange = this.handleCvcChange.bind(this);
         this.handleExpiryChange = this.handleExpiryChange.bind(this);
+        this.handleInputFocus = this.handleInputFocus.bind(this);
     }
     
+    handleInputFocus = ({ target }) => {
+        this.setState({
+          focus: target.name,
+        });
+    };
+
     handleNumberChange(event) {
         this.setState({ cardNumber: event.target.value })
     }
@@ -35,7 +43,7 @@ class CardInfo extends React.Component {
         this.setState({ expiry: event.target.value })
     }
 
-    handleSearch() {
+    validateCardNumber() {
         let card = this.state.cardNumber;
         card = card.split('').join(', ');
         const cardToArr = card.split(',').map(function(item) {
@@ -55,7 +63,23 @@ class CardInfo extends React.Component {
         } else {
             this.setState({results: 'not valid'})
         }
-    }  
+    }
+    
+    validateName = () => {
+        const { name } = this.state;
+        var alpha = /^[A-Za-z]+$/;
+        if(name.match(alpha)){
+            this.setState({
+            nameError:
+                name.length < 1 ? 'Name field can\'t be empty' : null
+        });
+        }
+        else{
+        this.setState({
+            nameError: 'Not a valid name'
+       });
+      }
+      }
 
     render() {
         return(
@@ -64,9 +88,20 @@ class CardInfo extends React.Component {
                 onChange={this.handleNumberChange}
                 placeholder="Please enter card number" />
 
-                <input 
-                onChange={this.handleNameChange}
-                placeholder="Full Name" />
+                <div>
+                    <input 
+                        name="Name"
+                        type="text"
+                        className= {`form-control ${this.state.nameError ? 'is-invalid' : ''}`}
+                        required
+                        value={this.state.name}
+                        onChange={this.handleNameChange}
+                        onFocus={this.handleInputFocus}
+                        onBlur={this.validateName}
+                        placeholder="Full Name" 
+                    />
+                    <div className='invalid-feedback error-msg'>{this.state.nameError}</div>
+                </div>
 
                 <input 
                 onChange={this.handleCvcChange}
@@ -76,7 +111,7 @@ class CardInfo extends React.Component {
                 onChange={this.handleExpiryChange}
                 placeholder="Expiration mmyy" />
 
-                <button onClick={this.handleSearch} className="validate-button">Validate</button>
+                <button onClick={this.validateCardNumber} className="validate-button">Validate</button>
 
                 <p>This card is {this.state.results}</p>
 

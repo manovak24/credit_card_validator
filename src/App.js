@@ -9,7 +9,10 @@ class App extends React.Component {
     return (
       <div>
         <h1>Credit Card Validator</h1>
-        <CardInfo />
+        
+        <div>
+          <CardInfo />
+        </div>
       </div>
       
     )
