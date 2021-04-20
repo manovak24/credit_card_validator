@@ -118,11 +118,14 @@ class CardInfo extends React.Component {
 
     render() {
         return(
-            <div className="card-validator">
-                <input
-                required
-                onChange={this.handleNumberChange}
-                placeholder="Please enter card number" />
+            <div className="card-validator" style={{display:'Flex', flexDirection:'column', alignItems:'center', textAlign:'center'}}>
+                <div>
+                    <input
+                        required
+                        onChange={this.handleNumberChange}
+                        placeholder="Please enter card number" 
+                    />
+                </div>
 
                 <div>
                     <input 
@@ -169,15 +172,17 @@ class CardInfo extends React.Component {
                     <div className='invalid-feedback error-msg'>{this.state.expiryError}</div>
                 </div>
 
-                <button onClick={this.validateCardNumber} className="validate-button">Validate</button>
+                <button type="submit" disabled={this.state.nameError || this.state.name.length < 1 || this.state.cvcError || this.state.cvc < 3 || this.state.expiryError || this.state.expiry < 4 || this.state.cardNumber < 1} onClick={this.validateCardNumber} className="validate-button">Validate</button>
 
-                <p>This card is {this.state.results}</p>
+                
 
                 <PaymentForm cardNumber={this.state.cardNumber}
                 name={this.state.name}
                 cvc={this.state.cvc}
                 expiry={this.state.expiry}
                 focus={this.state.focus} />
+
+                <p>This card is {this.state.results}</p>
             </div>
 
             
