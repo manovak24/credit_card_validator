@@ -13,7 +13,8 @@ class CardInfo extends React.Component {
             nameError: '',
             cvcError: '',
             expiryError: '',
-            focus: ''
+            focus: '',
+            disabled: true
         }
            
         this.handleNumberChange = this.handleNumberChange.bind(this);
@@ -116,6 +117,18 @@ class CardInfo extends React.Component {
         }
     }
 
+    //this.state.nameError || this.state.name.length < 1 || this.state.cvcError || this.state.cvc < 3 || this.state.expiryError || this.state.expiry < 4 || this.state.cardNumber < 1
+
+    buttonToggle() {
+        if (this.state.expiry < 4) {
+            button.disabled = true
+        } else {
+            this.setState({
+                disabled: false
+            })
+        }
+    }
+
     render() {
         return(
             <div className="card-validator" style={{display:'Flex', flexDirection:'column', alignItems:'center', textAlign:'center'}}>
@@ -172,7 +185,7 @@ class CardInfo extends React.Component {
                     <div className='invalid-feedback error-msg'>{this.state.expiryError}</div>
                 </div>
 
-                <button type="submit" disabled={this.state.nameError || this.state.name.length < 1 || this.state.cvcError || this.state.cvc < 3 || this.state.expiryError || this.state.expiry < 4 || this.state.cardNumber < 1} onClick={this.validateCardNumber} className="validate-button">Validate</button>
+                <button type="submit" disabled={this.buttonToggle} onClick={this.validateCardNumber} className="validate-button">Validate</button>
 
                 
 
