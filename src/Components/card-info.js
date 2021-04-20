@@ -12,6 +12,7 @@ class CardInfo extends React.Component {
             results: '',
             nameError: '',
             cvcError: '',
+            expiryError: '',
             focus: ''
         }
            
@@ -67,7 +68,7 @@ class CardInfo extends React.Component {
     
     validateName = () => {
         const { name } = this.state;
-        var alpha = /^[A-Za-z]+$/;
+        var alpha = /^[a-zA-Z\s]+$/;
         if(name.match(alpha)){
             this.setState({
             nameError:
@@ -79,9 +80,9 @@ class CardInfo extends React.Component {
             nameError: 'Not a valid name'
        });
       }
-      }
+    }
 
-      validateCVC= () => {
+    validateCVC = () => {
         const { cvc } = this.state;
         var num = /^[0-9]+$/;
         if(cvc.match(num)){
@@ -96,6 +97,23 @@ class CardInfo extends React.Component {
             cvcError: 'Only numeric values are allowed'
        });
       }
+    }
+
+    validateExpiry = () => {
+        const { expiry } = this.state;
+        let date = new Date();
+        let year = date.getFullYear();
+        let number = /^[0-9]+$/;
+        if (expiry.match(number)) {
+            this.setState ({ 
+                expiryError:
+                    expiry.length !== 4 ? 'Specified format "MMYY" is not satisfied' : Number(expiry.slice(0,2)) > 12 || Number('20' + expiry.slice(2,4)) < year ? 'Invalid Date' : null 
+            });
+        } else {
+            this.setState({
+                expiryError: 'Only numeric values allowed'
+            });
+        }
     }
 
     render() {
@@ -136,10 +154,20 @@ class CardInfo extends React.Component {
                     <div className='invalid-feedback error-msg'>{this.state.cvcError}</div>
                 </div>
 
-                <input
-                required
-                onChange={this.handleExpiryChange}
-                placeholder="Expiration mmyy" />
+                <div>
+                    <input
+                        type="tel"
+                        name="expiry"
+                        className={`form-control ${this.state.expiryError ? 'is-invalid' : ''}`}
+                        required
+                        value={this.state.expiry}
+                        onChange={this.handleExpiryChange}
+                        onFocus={this.handleInputFocus}
+                        onBlur={this.validateExpiry}
+                        placeholder="Expiration mm/yy" 
+                    />
+                    <div className='invalid-feedback error-msg'>{this.state.expiryError}</div>
+                </div>
 
                 <button onClick={this.validateCardNumber} className="validate-button">Validate</button>
 
