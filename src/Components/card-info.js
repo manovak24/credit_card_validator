@@ -10,6 +10,7 @@ class CardInfo extends React.Component {
             cvc: '',
             expiry: '',
             results: '',
+            numberError: '',
             nameError: '',
             cvcError: '',
             expiryError: '',
@@ -17,7 +18,7 @@ class CardInfo extends React.Component {
         }
            
         this.handleNumberChange = this.handleNumberChange.bind(this);
-        this.validateCardNumber = this.validateCardNumber.bind(this);
+        this.checkCardNumber = this.checkCardNumber.bind(this);
         this.handleNameChange = this.handleNameChange.bind(this);
         this.handleCvcChange = this.handleCvcChange.bind(this);
         this.handleExpiryChange = this.handleExpiryChange.bind(this);
@@ -26,7 +27,7 @@ class CardInfo extends React.Component {
     
     handleInputFocus = (event) => {
         this.setState({ focus: event.target.name });
-      }
+    }
 
     handleNumberChange(event) {
         this.setState({ cardNumber: event.target.value })
@@ -44,7 +45,7 @@ class CardInfo extends React.Component {
         this.setState({ expiry: event.target.value })
     }
 
-    validateCardNumber() {
+    checkCardNumber() {
         let card = this.state.cardNumber;
         card = card.split('').join(', ');
         const cardToArr = card.split(',').map(function(item) {
@@ -65,10 +66,26 @@ class CardInfo extends React.Component {
             this.setState({results: 'not valid'})
         }
     }
+
+    validateNumber = () => {
+        const { cardNumber } = this.state;
+        let num = /^[0-9]+$/;
+        if(cardNumber.match(num)) {
+            this.setState({
+                numberError:
+                    cardNumber.length < 12 ? 'Card Number should be between 12-19 digits' : null
+            });
+        } else {
+            this.setState({
+                numberError: 'Only numeric values allowed'
+            });
+        }
+
+    }
     
     validateName = () => {
         const { name } = this.state;
-        var alpha = /^[a-zA-Z\s]+$/;
+        let alpha = /^[a-zA-Z\s]+$/;
         if(name.match(alpha)){
             this.setState({
             nameError:
@@ -84,7 +101,7 @@ class CardInfo extends React.Component {
 
     validateCVC = () => {
         const { cvc } = this.state;
-        var num = /^[0-9]+$/;
+        let num = /^[0-9]+$/;
         if(cvc.match(num)){
             this.setState({
                 cvcError:
@@ -121,10 +138,17 @@ class CardInfo extends React.Component {
             <div className="card-validator" style={{display:'Flex', flexDirection:'column', alignItems:'center', textAlign:'center'}}>
                 <div>
                     <input
+                        name="Number"
+                        type="tel"
+                        className={`form-control ${this.state.numberError ? 'is-invalid' : ''}`}
                         required
+                        value={this.state.cardNumber}
                         onChange={this.handleNumberChange}
+                        onFocus={this.handleInputFocus}
+                        onBlur={this.validateNumber}
                         placeholder="Please enter card number" 
                     />
+                    <div className='invalid-feedback error-msg'>{this.state.numberError}</div>
                 </div>
 
                 <div>
@@ -172,7 +196,7 @@ class CardInfo extends React.Component {
                     <div className='invalid-feedback error-msg'>{this.state.expiryError}</div>
                 </div>
 
-                <button type="submit" disabled={!this.state.cardNumber || !this.state.name || !this.state.cvc || !this.state.expiry} onClick={this.validateCardNumber} className="validate-button">Validate</button>
+                <button type="submit" disabled={!this.state.cardNumber || !this.state.name || !this.state.cvc || !this.state.expiry} onClick={this.checkCardNumber} className="validate-button">Validate</button>
 
                 
 
