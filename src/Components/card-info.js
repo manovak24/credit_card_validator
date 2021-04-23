@@ -23,6 +23,7 @@ class CardInfo extends React.Component {
         this.handleCvcChange = this.handleCvcChange.bind(this);
         this.handleExpiryChange = this.handleExpiryChange.bind(this);
         this.handleInputFocus = this.handleInputFocus.bind(this);
+        this.handleRetry = this.handleRetry.bind(this);
     }
     
     handleInputFocus = (event) => {
@@ -43,6 +44,21 @@ class CardInfo extends React.Component {
 
     handleExpiryChange(event) {
         this.setState({ expiry: event.target.value })
+    }
+
+    handleRetry = () => {
+        this.setState  ({
+            cardNumber: '',
+            name: '',
+            cvc: '',
+            expiry: '',
+            results: '',
+            numberError: '',
+            nameError: '',
+            cvcError: '',
+            expiryError: '',
+            focus: ''
+        })
     }
 
     checkCardNumber() {
@@ -197,7 +213,7 @@ class CardInfo extends React.Component {
                 </div>
 
                 <button type="submit" disabled={!this.state.cardNumber || !this.state.name || !this.state.cvc || !this.state.expiry} onClick={this.checkCardNumber} className="validate-button">Validate</button>
-
+                <button type="submit" className= {this.state.results.length > 0 ? 'show-retry-button' : 'hide-retry-button'} onClick={this.handleRetry} >Reset</button>
                 
 
                 <PaymentForm cardNumber={this.state.cardNumber}
