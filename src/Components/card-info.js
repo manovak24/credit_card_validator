@@ -1,5 +1,6 @@
 import React from 'react';
 import PaymentForm from './card';
+import './card-info.css';
 
 class CardInfo extends React.Component {
     constructor(props) {
@@ -77,9 +78,9 @@ class CardInfo extends React.Component {
         }
         let arraySum = cardToArr.reduce((acc, cur) => acc + cur);
         if (arraySum % 10 === 0) {
-            this.setState({results: 'valid'})
+            this.setState({results: 'This card is valid'})
         } else {
-            this.setState({results: 'not valid'})
+            this.setState({results: 'This card is not valid'})
         }
     }
 
@@ -151,7 +152,39 @@ class CardInfo extends React.Component {
 
     render() {
         return(
-            <div className="card-validator" style={{display:'Flex', flexDirection:'column', alignItems:'center', textAlign:'center'}}>
+            <div className="validator-container">
+                <p className='result-info'>{this.state.results}</p>
+
+                <div>
+                    <input
+                        type="tel"
+                        name="expiry"
+                        className={`form-control ${this.state.expiryError ? 'is-invalid' : ''}`}
+                        required
+                        value={this.state.expiry}
+                        onChange={this.handleExpiryChange}
+                        onFocus={this.handleInputFocus}
+                        onBlur={this.validateExpiry}
+                        placeholder="Expiration mm/yy" 
+                    />
+                    <div className='invalid-feedback error-msg'>{this.state.expiryError}</div>
+                </div>
+
+                <div>
+                    <input
+                        type="tel"
+                        name="cvc"
+                        className= {`form-control ${this.state.cvcError ? 'is-invalid' : ''}`}
+                        required
+                        value={this.state.cvc}
+                        onChange={this.handleCvcChange}
+                        onFocus={this.handleInputFocus}
+                        onBlur={this.validateCVC}
+                        placeholder="cvc Code" 
+                    />
+                    <div className='invalid-feedback error-msg'>{this.state.cvcError}</div>
+                </div>      
+
                 <div>
                     <input
                         name="Number"
@@ -182,39 +215,14 @@ class CardInfo extends React.Component {
                     <div className='invalid-feedback error-msg'>{this.state.nameError}</div>
                 </div>
 
-                <div>
-                    <input
-                        type="tel"
-                        name="cvc"
-                        className= {`form-control ${this.state.cvcError ? 'is-invalid' : ''}`}
-                        required
-                        value={this.state.cvc}
-                        onChange={this.handleCvcChange}
-                        onFocus={this.handleInputFocus}
-                        onBlur={this.validateCVC}
-                        placeholder="cvc Code" 
-                    />
-                    <div className='invalid-feedback error-msg'>{this.state.cvcError}</div>
-                </div>
-
-                <div>
-                    <input
-                        type="tel"
-                        name="expiry"
-                        className={`form-control ${this.state.expiryError ? 'is-invalid' : ''}`}
-                        required
-                        value={this.state.expiry}
-                        onChange={this.handleExpiryChange}
-                        onFocus={this.handleInputFocus}
-                        onBlur={this.validateExpiry}
-                        placeholder="Expiration mm/yy" 
-                    />
-                    <div className='invalid-feedback error-msg'>{this.state.expiryError}</div>
-                </div>
-
-                <button type="submit" disabled={!this.state.cardNumber || !this.state.name || !this.state.cvc || !this.state.expiry} onClick={this.checkCardNumber} className="validate-button">Validate</button>
-                <button type="submit" className= {this.state.results.length > 0 ? 'show-retry-button' : 'hide-retry-button'} onClick={this.handleRetry} >Reset</button>
                 
+
+                
+
+                <div className='button-container'>
+                    <button type="submit" className='button' disabled={!this.state.cardNumber || !this.state.name || !this.state.cvc || !this.state.expiry} onClick={this.checkCardNumber}>Validate</button>
+                    <button type="submit" className='button' disabled={!this.state.cardNumber || !this.state.name || !this.state.cvc || !this.state.expiry} onClick={this.handleRetry} >Reset</button>
+                </div>
 
                 <PaymentForm cardNumber={this.state.cardNumber}
                 name={this.state.name}
@@ -222,7 +230,7 @@ class CardInfo extends React.Component {
                 expiry={this.state.expiry}
                 focus={this.state.focus} />
 
-                <p>This card is {this.state.results}</p>
+                
             </div>
 
             
