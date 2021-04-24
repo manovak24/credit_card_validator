@@ -90,11 +90,11 @@ class CardInfo extends React.Component {
         if(cardNumber.match(num)) {
             this.setState({
                 numberError:
-                    cardNumber.length < 12 ? 'Card Number should be between 12-19 digits' : null
+                    cardNumber.length < 12 ? '*Card Number should be between 12-19 digits' : null
             });
         } else {
             this.setState({
-                numberError: 'Only numeric values allowed'
+                numberError: '*Only numeric values allowed'
             });
         }
 
@@ -106,12 +106,12 @@ class CardInfo extends React.Component {
         if(name.match(alpha)){
             this.setState({
             nameError:
-                name.length < 1 ? 'Name field can\'t be empty' : null
+                name.length < 1 ? '*Name field can\'t be empty' : null
         });
         }
         else{
         this.setState({
-            nameError: 'Not a valid name'
+            nameError: '*Not a valid name'
        });
       }
     }
@@ -122,13 +122,13 @@ class CardInfo extends React.Component {
         if(cvc.match(num)){
             this.setState({
                 cvcError:
-                    cvc.length < 3 || cvc.length > 4 ? 'CVC should be of 3-4 digits' : null
+                    cvc.length < 3 || cvc.length > 4 ? '*CVC should be of 3-4 digits' : null
         });
 
         }
         else{
         this.setState({
-            cvcError: 'Only numeric values are allowed'
+            cvcError: '*Only numeric values are allowed'
        });
       }
     }
@@ -141,11 +141,11 @@ class CardInfo extends React.Component {
         if (expiry.match(number)) {
             this.setState ({ 
                 expiryError:
-                    expiry.length !== 4 ? 'Specified format "MMYY" is not satisfied' : Number(expiry.slice(0,2)) > 12 || Number('20' + expiry.slice(2,4)) < year ? 'Invalid Date' : null 
+                    expiry.length !== 4 ? '*Specified format "MMYY" is not satisfied' : Number(expiry.slice(0,2)) > 12 || Number('20' + expiry.slice(2,4)) < year ? 'Invalid Date' : null 
             });
         } else {
             this.setState({
-                expiryError: 'Only numeric values allowed'
+                expiryError: '*Only numeric values allowed'
             });
         }
     }
