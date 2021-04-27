@@ -1,12 +1,13 @@
 body {
   font-family: 'Poppins', sans-serif;
   text-align: center;
+  display: flex;
+  justify-content: center;
 }
 
 .app-container {
   border: .2rem solid black;
-  margin-left: 25%;
-  margin-right: 25%;
+  width: 24rem;
   margin-top: 4rem;
   padding-bottom: 2rem;
   border-radius: 4rem;
@@ -15,8 +16,6 @@ body {
 @media screen and (max-width: 37.5rem) {
   .app-container {
     margin-top: 2rem;
-    margin-left: 5%;
-    margin-right: 5%;
   }
 }
 
