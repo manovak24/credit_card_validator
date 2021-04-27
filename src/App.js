@@ -7,10 +7,17 @@ import CardInfo from './Components/card-info';
 class App extends React.Component {
   render() {
     return (
-      <div>
-        <h1>Credit Card Validator</h1>
-        <div>
+      <div className="app-container">
+        <div className="title-container">
+          <h1>Credit Card Validator</h1>
+        </div>
+
+        <div className="card-info-container">
           <CardInfo />
+        </div>
+
+        <div className="footer-container">
+          <p>*Please note this site does not store any credit card information*</p>
         </div>
       </div>
       
