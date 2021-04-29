@@ -221,15 +221,17 @@ class CardInfo extends React.Component {
 
                 <div className='button-container'>
                     <button type="submit" className='button' disabled={!this.state.cardNumber || !this.state.name || !this.state.cvc || !this.state.expiry} onClick={this.checkCardNumber}>Validate</button>
-                    <button type="submit" className='button' disabled={!this.state.cardNumber || !this.state.name || !this.state.cvc || !this.state.expiry} onClick={this.handleRetry} >Reset</button>
+                    <button type="submit" className='button' onClick={this.handleRetry} >Reset</button>
                 </div>
 
-                <PaymentForm cardNumber={this.state.cardNumber}
-                name={this.state.name}
-                cvc={this.state.cvc}
-                expiry={this.state.expiry}
-                focus={this.state.focus} />
-
+                <div id="card-pic">
+                    <PaymentForm
+                    cardNumber={this.state.cardNumber}
+                    name={this.state.name}
+                    cvc={this.state.cvc}
+                    expiry={this.state.expiry}
+                    focus={this.state.focus} />
+                </div>
                 
             </div>
 
