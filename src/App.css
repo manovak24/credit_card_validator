@@ -3,19 +3,25 @@ body {
   text-align: center;
   display: flex;
   justify-content: center;
+  background: #ff512f; /* fallback for old browsers */
+	background: -webkit-linear-gradient(
+		to right,
+		#24c1dd,
+		#2f78ff
+	); /* Chrome 10-25, Safari 5.1-6 */
+	background: linear-gradient(to right, #24dddd, #2f78ff);
 }
 
 .app-container {
   border: .2rem solid black;
   width: 24rem;
-  margin-top: 4rem;
-  padding-bottom: 2rem;
+  margin-top: 2rem;
   border-radius: 4rem;
 }
 
-@media screen and (max-width: 37.5rem) {
+@media screen and (max-width: 30rem) {
   .app-container {
-    margin-top: 2rem;
+    width: 19rem;
   }
 }
 
@@ -24,11 +30,13 @@ body {
 }
 
 .title-container {
-  margin-top: 4rem;
+  margin-top: 2rem;
   font-size: 2rem;
 }
 
 .footer-container {
   font-weight: 700;
+  font-size: .8rem;
+  padding: 1rem;
 }
 
