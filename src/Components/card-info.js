@@ -165,7 +165,7 @@ class CardInfo extends React.Component {
                         onChange={this.handleExpiryChange}
                         onFocus={this.handleInputFocus}
                         onBlur={this.validateExpiry}
-                        placeholder="Expiration mm/yy" 
+                        placeholder="Expiration mmyy" 
                     />
                     <div className='invalid-feedback error-msg'>{this.state.expiryError}</div>
                 </div>
@@ -224,7 +224,7 @@ class CardInfo extends React.Component {
                     <button type="submit" className='button' onClick={this.handleRetry} >Reset</button>
                 </div>
 
-                <div id="card-pic">
+                <div>
                     <PaymentForm
                     cardNumber={this.state.cardNumber}
                     name={this.state.name}

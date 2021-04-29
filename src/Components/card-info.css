@@ -8,6 +8,8 @@
 .form-control {
   margin: .4rem;
   width: 16rem; 
+  border-radius: .4rem;
+  height: 1.2rem;
 }
 
 .button-container {
@@ -26,8 +28,4 @@
   font-style: italic;
   color: red;
   font-size: .8rem;
-}
-
-#card-pic {
-  flex-shrink: 2;
 }
