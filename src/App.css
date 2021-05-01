@@ -3,17 +3,17 @@ body {
   text-align: center;
   display: flex;
   justify-content: center;
-  background: #ff512f; /* fallback for old browsers */
+  background: #2f78ff; /* fallback for old browsers */
 	background: -webkit-linear-gradient(
 		to right,
-		#24c1dd,
-		#2f78ff
+		#2474dd,
+		#9a2fff
 	); /* Chrome 10-25, Safari 5.1-6 */
-	background: linear-gradient(to right, #24dddd, #2f78ff);
+	background: linear-gradient(to right, #2474dd, #9a2fff);
 }
 
 .app-container {
-  border: .4rem solid black;
+  border: .4rem solid white;
   width: 24rem;
   margin-top: 2rem;
   border-radius: 4rem;
@@ -40,5 +40,6 @@ body {
   font-weight: 700;
   font-size: .8rem;
   padding: 1rem;
+  color: white;
 }
 
