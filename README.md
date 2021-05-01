@@ -14,7 +14,7 @@
 > Simple web app validating credit card numbers with the Luhn Method.
 
 ## Screenshots
-![Example screenshot](./src/assets/screenshot.png)
+![Example screenshot](./screen-shot.png)
 
 ## Technologies
 * React
