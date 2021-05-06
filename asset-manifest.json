@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.css": "/credit_card_validator/static/css/main.1cb74b7e.chunk.css",
+    "main.css": "/credit_card_validator/static/css/main.1beecbe0.chunk.css",
     "main.js": "/credit_card_validator/static/js/main.a39cbf2d.chunk.js",
     "main.js.map": "/credit_card_validator/static/js/main.a39cbf2d.chunk.js.map",
     "runtime-main.js": "/credit_card_validator/static/js/runtime-main.62f4f6a3.js",
@@ -10,14 +10,14 @@
     "static/js/2.93dd3ea2.chunk.js.map": "/credit_card_validator/static/js/2.93dd3ea2.chunk.js.map",
     "index.html": "/credit_card_validator/index.html",
     "static/css/2.727685ba.chunk.css.map": "/credit_card_validator/static/css/2.727685ba.chunk.css.map",
-    "static/css/main.1cb74b7e.chunk.css.map": "/credit_card_validator/static/css/main.1cb74b7e.chunk.css.map",
+    "static/css/main.1beecbe0.chunk.css.map": "/credit_card_validator/static/css/main.1beecbe0.chunk.css.map",
     "static/js/2.93dd3ea2.chunk.js.LICENSE.txt": "/credit_card_validator/static/js/2.93dd3ea2.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.62f4f6a3.js",
     "static/css/2.727685ba.chunk.css",
     "static/js/2.93dd3ea2.chunk.js",
-    "static/css/main.1cb74b7e.chunk.css",
+    "static/css/main.1beecbe0.chunk.css",
     "static/js/main.a39cbf2d.chunk.js"
   ]
 }
