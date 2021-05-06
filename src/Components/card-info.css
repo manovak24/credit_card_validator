@@ -24,6 +24,7 @@
   border-radius: .4rem;
   margin: .5rem;
   font-weight: 500;
+  background-color: white;
 }
 
 .invalid-feedback {
