@@ -21,6 +21,7 @@
 * JavaScript
 * HTML
 * CSS
+* sweetalert2
 
 
 ## Setup
