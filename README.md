@@ -25,7 +25,7 @@
 
 
 ## Setup
-Please follow link to website - https://manovak24.github.io/
+Please follow link to website - https://manovak24.github.io/credit_card_validator/
 
 ## Code Examples
 ```js
