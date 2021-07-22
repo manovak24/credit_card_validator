@@ -1,5 +1,6 @@
 import React from 'react';
 import Cards from 'react-credit-cards';
+import PropTypes from 'prop-types';
 import 'react-credit-cards/es/styles-compiled.css';
  
 export default class PaymentForm extends React.Component {
@@ -28,3 +29,11 @@ export default class PaymentForm extends React.Component {
     );
   }
 };
+
+PaymentForm.propTypes = {
+  cvc: PropTypes.string.isRequired,
+  expiry: PropTypes.string.isRequired,
+  focus: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
+  cardNumber: PropTypes.string.isRequired,
+}
