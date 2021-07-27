@@ -4,16 +4,6 @@ import PropTypes from 'prop-types';
 import 'react-credit-cards/es/styles-compiled.css';
  
 export default class PaymentForm extends React.Component {
-  constructor(props) {
-      super(props);
-      this.state = {
-        cvc: '',
-        expiry: '',
-        focus: '',
-        name: '',
-        number: '',
-      }
-  }
   
   render() {
     return (
