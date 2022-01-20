@@ -3,13 +3,13 @@ body {
   text-align: center;
   display: flex;
   justify-content: center;
-  background: #2f78ff; /* fallback for old browsers */
+  background: #091f3b; /* fallback for old browsers */
 	background: -webkit-linear-gradient(
 		to right,
-		#2474dd,
-		#9a2fff
+		#091f3b,
+		#10756f
 	); /* Chrome 10-25, Safari 5.1-6 */
-	background: linear-gradient(to right, #2474dd, #9a2fff);
+	background: linear-gradient(to right, #091f3b, #10756f);
 }
 
 .app-container {
